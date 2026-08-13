@@ -46,7 +46,7 @@ T = {
     'btn_down_rasters': {'en': "📥 1. Process rasters", 'vi': "📥 1. Xử lý dữ liệu raster"},
     'btn_run_vif': {'en': "🔬 2. Extract values & run VIF", 'vi': "🔬 2. Kiểm tra VIF"},
     'btn_train': {'en': "⚡ Train SDM model", 'vi': "⚡ Huấn luyện mô hình"},
-    'btn_map': {'en': "🔮 Predict spatial map", 'vi': "🔮 Tạo bản đồ dự đoán"}
+    'btn_map': {'en': "🔮 Generate prediction map", 'vi': "🔮 Tạo bản đồ dự đoán"}
 }
 
 st.markdown(f"<h1 style='text-align: center;'>{T['app_title'][L]}</h1>", unsafe_allow_html=True)
@@ -127,7 +127,11 @@ else:
             presences = spatial_thinning(raw_presences, min_dist_km=min_dist)
             
             st.session_state['presences'] = presences
-            species_name = "Custom Species"
+            
+            # --- ĐÃ SỬA DÒNG NÀY ---
+            species_name = "loài" if L == 'vi' else "species" 
+            # -----------------------
+            
             st.session_state['species_name'] = species_name
             
             msg = f"✅ CSV: {len(raw_presences)} điểm. Lọc còn {len(presences)} điểm!" if L=='vi' else f"✅ Uploaded {len(raw_presences)}. Retained {len(presences)}!"
