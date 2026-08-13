@@ -132,9 +132,11 @@ def predict_spatial_map(rf_model, retained_features, raster_map):
         
     stack = np.zeros((rows, cols, len(retained_features)), dtype='float32')
     nodata_mask = np.zeros((rows, cols), dtype=bool)
+    
     for idx, feat in enumerate(retained_features):
         with rasterio.open(raster_map[feat]) as src:
-            arr = src.read(1).astype('float32')
+            # Ép kích thước đầu ra (out_shape) để tránh lỗi shape mismatch giữa các raster
+            arr = src.read(1, out_shape=(rows, cols)).astype('float32')
             stack[:, :, idx] = arr
             nodata_mask |= (arr == src.nodata) | np.isnan(arr)
 
