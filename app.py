@@ -104,21 +104,23 @@ else:
     if uploaded_file is not None:
         raw_presences = pd.read_csv(uploaded_file)
         
-        # --- ĐOẠN CODE THÊM MỚI: CHUẨN HÓA TÊN CỘT ---
+        # --- ĐOẠN CODE CHUẨN HÓA TÊN CỘT ĐƯỢC MỞ RỘNG TỐI ĐA ---
         col_mapping = {}
         for col in raw_presences.columns:
             col_lower = str(col).strip().lower()
-            if col_lower in ['lat', 'latitude', 'decimallatitude', 'y']:
+            # Nhận diện cột Vĩ độ (Latitude/Y)
+            if col_lower in ['lat', 'latitude', 'decimallatitude', 'y', 'vi_do', 'vĩ độ', 'vido', 'point_y']:
                 col_mapping[col] = 'decimalLatitude'
-            elif col_lower in ['lon', 'lng', 'longitude', 'decimallongitude', 'x']:
+            # Nhận diện cột Kinh độ (Longitude/X)
+            elif col_lower in ['lon', 'lng', 'long', 'longitude', 'decimallongitude', 'x', 'kinh_do', 'kinh độ', 'kinhdo', 'point_x']:
                 col_mapping[col] = 'decimalLongitude'
                 
         raw_presences = raw_presences.rename(columns=col_mapping)
-        # ---------------------------------------------
+        # -------------------------------------------------------
         
         # Kiểm tra điều kiện bắt buộc phải có tọa độ
         if 'decimalLatitude' not in raw_presences.columns or 'decimalLongitude' not in raw_presences.columns:
-            error_msg = "❌ Lỗi: File CSV thiếu cột tọa độ. Vui lòng đảm bảo file có chứa cột 'lat' và 'lon'." if L=='vi' else "❌ Error: CSV missing coordinate columns. Ensure 'lat' and 'lon' exist."
+            error_msg = f"❌ Lỗi: File CSV thiếu cột tọa độ. Các cột hiện có trong file của bạn: {', '.join(raw_presences.columns)}. Vui lòng đổi tên cột tọa độ thành 'lat' và 'lon'." if L=='vi' else f"❌ Error: CSV missing coordinates. Existing columns: {', '.join(raw_presences.columns)}. Rename them to 'lat' and 'lon'."
             st.sidebar.error(error_msg)
         else:
             raw_presences['occurrenceStatus_bin'] = 1
