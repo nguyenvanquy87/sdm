@@ -222,12 +222,12 @@ if 'presences' in st.session_state:
                     rf, X_tr, y_tr, X_ts, y_ts, p_tr, p_ts, t1, best_idx = train_rf(X_filtered, y, params)
                     st.session_state.update({'rf': rf, 't1': t1, 'X_filtered': X_filtered})
                     
-                    col1, col2 = st.columns(2)
-                    # Ép kích thước hiển thị cân bằng trên 2 cột bằng use_container_width=True
-                    with col1: 
-                        st.pyplot(plot_roc_curve(y_tr, p_tr, y_ts, p_ts, L), use_container_width=True)
-                    with col2: 
-                        st.pyplot(plot_feature_importance(rf.feature_importances_, st.session_state['retained'], L), use_container_width=True)
+                    # Tạo cột thu gọn độ rộng hiển thị (ví dụ 1:1 là chiếm 50% chiều ngang màn hình)
+                    col_plot, _ = st.columns([1, 1]) 
+                    
+                    with col_plot:
+                        st.pyplot(plot_roc_curve(y_tr, p_tr, y_ts, p_ts, L))
+                        st.pyplot(plot_feature_importance(rf.feature_importances_, st.session_state['retained'], L))
 
     with tab3:
         if 'rf' in st.session_state:
