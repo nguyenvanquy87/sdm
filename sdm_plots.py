@@ -166,13 +166,13 @@ def plot_categorical_map(cat_map, extent, crs, world_shp_path, species_name, lan
         
     c_labels = get_class_labels(lang)
     
-    # Legend siêu tối giản: Bỏ Title, bỏ Khung
+    # Hiển thị legend có khung vuông
     ax.legend(handles=[
         mpatches.Patch(color=CLASS_COLORS[0], label=c_labels[0]),
         mpatches.Patch(color=CLASS_COLORS[1], label=c_labels[1]),
         mpatches.Patch(color=CLASS_COLORS[2], label=c_labels[2]),
         mpatches.Patch(color=CLASS_COLORS[3], label=c_labels[3])
-    ], loc='lower left', frameon=False)
+    ], loc='lower left', frameon=True, edgecolor='black', framealpha=1.0)
     
     title = f'Phân bố tiềm năng của {species_name}' if lang == 'vi' else f'Potential distribution of {species_name}'
     ax.set(xlabel='Kinh độ' if lang == 'vi' else 'Longitude', 
