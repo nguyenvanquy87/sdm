@@ -223,8 +223,11 @@ if 'presences' in st.session_state:
                     st.session_state.update({'rf': rf, 't1': t1, 'X_filtered': X_filtered})
                     
                     col1, col2 = st.columns(2)
-                    with col1: st.pyplot(plot_roc_curve(y_tr, p_tr, y_ts, p_ts, L))
-                    with col2: st.pyplot(plot_feature_importance(rf.feature_importances_, st.session_state['retained'], L))
+                    # Ép kích thước hiển thị cân bằng trên 2 cột bằng use_container_width=True
+                    with col1: 
+                        st.pyplot(plot_roc_curve(y_tr, p_tr, y_ts, p_ts, L), use_container_width=True)
+                    with col2: 
+                        st.pyplot(plot_feature_importance(rf.feature_importances_, st.session_state['retained'], L), use_container_width=True)
 
     with tab3:
         if 'rf' in st.session_state:
