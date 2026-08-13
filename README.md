@@ -1,3 +1,4 @@
+markdown
 # 🌍 AI-Powered Species Distribution Modeler
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)
@@ -18,6 +19,10 @@
 ---
 
 ## 📂 Cấu trúc dự án
+
+add code
+
+replace
 📦 SDM-WebApp
 ┣ 📜 app.py # Giao diện chính, định tuyến đa ngôn ngữ & Dark Mode
 ┣ 📜 sdm_engine.py # Thuật toán xử lý (VIF, Random Forest, Spatial Thinning)
@@ -26,6 +31,7 @@
 ┣ 📜 packages.txt # Thư viện hệ thống cho GDAL/Rasterio
 ┗ 📜 README.md # Tài liệu hướng dẫn
 
+text
 
 ---
 
@@ -82,7 +88,21 @@ pip install -r requirements.txt
 # 4. Chạy ứng dụng
 streamlit run app.py
 
+add code
+
+replace
+Sau khi chạy, ứng dụng sẽ tự động mở tại http://localhost:8501 trên trình duyệt của bạn.
+
+🛠️ Công nghệ sử dụng
+Thành phần	Công nghệ
+Giao diện	Streamlit
+Máy học	Scikit-Learn (Random Forest)
+Xử lý không gian	Rasterio, Geopandas, GDAL, Pyproj
+Xử lý dữ liệu	Pandas, NumPy
+Trực quan hóa	Matplotlib, Streamlit native
+Nguồn dữ liệu	GBIF API, WorldClim
 📦 Thư viện phụ thuộc chính
+txt
 streamlit>=1.32.0
 scikit-learn>=1.3.0
 pandas>=2.0.0
@@ -95,10 +115,63 @@ shapely>=2.0.0
 pyproj>=3.5.0
 openpyxl>=3.1.0
 
+add code
+
+Xem danh sách đầy đủ tại requirements.txt
+
 🗺️ Hướng dẫn sử dụng
 Bước 1: Nhập dữ liệu đầu vào
 Tên loài: Nhập tên khoa học để lấy dữ liệu từ GBIF
 
 Hoặc tải CSV: Cung cấp file dữ liệu của riêng bạn (gồm cột latitude, longitude)
 
+Bước 2: Cấu hình tham số
+Thiết lập khoảng cách lọc không gian (km)
 
+Chọn các lớp dữ liệu môi trường
+
+Điều chỉnh siêu tham số Random Forest
+
+Bước 3: Chạy mô hình
+Nhấn nút "Chạy mô hình"
+
+Theo dõi tiến trình qua logs thời gian thực
+
+Bước 4: Phân tích kết quả
+Xem bản đồ tương tác
+
+Tải xuống biểu đồ và báo cáo
+
+🤝 Đóng góp cho dự án
+Chúng tôi luôn chào đón mọi đóng góp!
+
+Fork repository
+
+Tạo branch mới: git checkout -b feature/tinh-nang-moi
+
+Commit thay đổi: git commit -m 'Thêm tính năng mới'
+
+Push lên branch: git push origin feature/tinh-nang-moi
+
+Mở Pull Request
+
+Vui lòng đảm bảo code tuân thủ PEP 8 và có tài liệu đi kèm.
+
+📝 Giấy phép
+Dự án được phân phối dưới giấy phép MIT. Xem file LICENSE để biết thêm chi tiết.
+
+🙏 Lời cảm ơn
+GBIF - Nền tảng cung cấp dữ liệu xuất hiện loài
+
+WorldClim - Dữ liệu khí hậu và môi trường toàn cầu
+
+Streamlit - Framework tuyệt vời cho ứng dụng dữ liệu
+
+📬 Liên hệ
+Nếu bạn có câu hỏi, góp ý hoặc muốn hợp tác:
+
+Mở Issue: GitHub Issues
+
+Email: your.email@example.com
+
+<div align="center"> <strong>🌟 Chúc bạn có những phân tích thú vị! 🌿</strong> </div> ```
