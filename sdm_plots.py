@@ -77,7 +77,8 @@ def plot_roc_curve(y_train, y_train_prob, y_test, y_test_prob, lang='en'):
     fpr_ts, tpr_ts, _ = roc_curve(y_test, y_test_prob)
     
     fig, ax = plt.subplots(figsize=(6, 6))
-    fig.subplots_adjust(left=0.15, right=0.95, top=0.9, bottom=0.15)
+    # ĐỒNG BỘ LỀ TRÁI BẰNG 0.25 ĐỂ KHỚP VỚI BIỂU ĐỒ FEATURE IMPORTANCE
+    fig.subplots_adjust(left=0.25, right=0.95, top=0.9, bottom=0.17)
     
     lbl_tr = f'Dữ liệu huấn luyện AUC = {auc(fpr_tr, tpr_tr):.3f}' if lang == 'vi' else f'Train AUC = {auc(fpr_tr, tpr_tr):.3f}'
     lbl_ts = f'Dữ liệu kiểm tra AUC = {auc(fpr_ts, tpr_ts):.3f}' if lang == 'vi' else f'Test AUC = {auc(fpr_ts, tpr_ts):.3f}'
