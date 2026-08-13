@@ -1,0 +1,12 @@
+streamlit
+pandas
+numpy
+rasterio
+geopandas
+matplotlib
+seaborn
+scikit-learn
+statsmodels
+requests
+tqdm
+SciencePlots
