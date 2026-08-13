@@ -8,7 +8,7 @@
 ## 📌 Overview
 The **AI-Powered Species Distribution Modeler** is a comprehensive, open-source web application designed for high-impact biogeographical and ecological research. Powered by Streamlit and Scikit-Learn, this tool bridges the gap between complex geospatial data processing and user-friendly, publication-ready analytics.
 
-The application is meticulously optimized to meet the visualization and methodological standards required by top-tier **SCI/SCIE Q1 journals**. It features an automated dark-mode UI and fully bilingual support (English/Vietnamese).
+The application is meticulously optimized to meet the visualization and methodological standards required. It features an automated dark-mode UI and fully bilingual support (English/Vietnamese).
 
 ## ✨ Key Features
 ### 🔬 1. Automated Data Acquisition & Spatial Processing
@@ -21,7 +21,7 @@ The application is meticulously optimized to meet the visualization and methodol
 * **Step-wise VIF Selection:** Iterative multicollinearity assessment to isolate independent environmental drivers.
 * **Hyperparameter-Tuned Random Forest:** Tunable parameters (`n_estimators`, `max_depth`) with built-in class balancing and bootstrapping to prevent spatial overfitting.
 
-### 📈 3. Publication-Ready Visualizations (Minimalist Q1 Standards)
+### 📈 3. Publication-Ready Visualizations
 * **Zero-Configuration Plots:** Fully customized outputs featuring closed-box spines, inward ticks, and minimalist legends.
 * **Multi-metric Evaluation:** Clean ROC Curves (Train vs. Test) and Feature Importance horizontal bar charts.
 * **Ecological Niche Analysis:** Violin plots visualizing environmental distributions across 4 precise suitability classes, featuring shared x-axes and 45-degree angled labels for maximum space efficiency.
