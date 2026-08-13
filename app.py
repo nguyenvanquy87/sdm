@@ -103,16 +103,34 @@ else:
     uploaded_file = st.sidebar.file_uploader(T['btn_upload'][L], type=['csv'])
     if uploaded_file is not None:
         raw_presences = pd.read_csv(uploaded_file)
-        raw_presences['occurrenceStatus_bin'] = 1
-        presences = spatial_thinning(raw_presences, min_dist_km=min_dist)
         
-        st.session_state['presences'] = presences
-        species_name = "Custom Species"
-        st.session_state['species_name'] = species_name
+        # --- ĐOẠN CODE THÊM MỚI: CHUẨN HÓA TÊN CỘT ---
+        col_mapping = {}
+        for col in raw_presences.columns:
+            col_lower = str(col).strip().lower()
+            if col_lower in ['lat', 'latitude', 'decimallatitude', 'y']:
+                col_mapping[col] = 'decimalLatitude'
+            elif col_lower in ['lon', 'lng', 'longitude', 'decimallongitude', 'x']:
+                col_mapping[col] = 'decimalLongitude'
+                
+        raw_presences = raw_presences.rename(columns=col_mapping)
+        # ---------------------------------------------
         
-        msg = f"✅ CSV: {len(raw_presences)} điểm. Lọc còn {len(presences)} điểm!" if L=='vi' else f"✅ Uploaded {len(raw_presences)}. Retained {len(presences)}!"
-        st.sidebar.success(msg)
-        st.toast(msg)
+        # Kiểm tra điều kiện bắt buộc phải có tọa độ
+        if 'decimalLatitude' not in raw_presences.columns or 'decimalLongitude' not in raw_presences.columns:
+            error_msg = "❌ Lỗi: File CSV thiếu cột tọa độ. Vui lòng đảm bảo file có chứa cột 'lat' và 'lon'." if L=='vi' else "❌ Error: CSV missing coordinate columns. Ensure 'lat' and 'lon' exist."
+            st.sidebar.error(error_msg)
+        else:
+            raw_presences['occurrenceStatus_bin'] = 1
+            presences = spatial_thinning(raw_presences, min_dist_km=min_dist)
+            
+            st.session_state['presences'] = presences
+            species_name = "Custom Species"
+            st.session_state['species_name'] = species_name
+            
+            msg = f"✅ CSV: {len(raw_presences)} điểm. Lọc còn {len(presences)} điểm!" if L=='vi' else f"✅ Uploaded {len(raw_presences)}. Retained {len(presences)}!"
+            st.sidebar.success(msg)
+            st.toast(msg)
 
 if 'species_name' in st.session_state:
     species_name = st.session_state['species_name']
